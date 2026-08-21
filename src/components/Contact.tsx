@@ -33,7 +33,7 @@ export default function Contact() {
           <a
             href={`mailto:${EMAIL}`}
             onClick={handleCopy}
-            className={`font-mono text-[14.5px] pb-1.5 border-b flex items-center gap-2 transition-colors ${
+            className={`font-mono text-[14.5px] pb-1.5 border-b flex items-center gap-2 transition-colors w-fit ${
               copied
                 ? 'text-accent border-accent'
                 : 'border-line hover:border-ink hover:text-accent'
@@ -45,7 +45,7 @@ export default function Contact() {
             href="https://github.com/oguguca"
             target="_blank"
             rel="noopener"
-            className="font-mono text-[14.5px] pb-1.5 border-b border-line flex items-center gap-2 hover:border-ink hover:text-accent transition-colors"
+            className="font-mono text-[14.5px] pb-1.5 border-b border-line flex items-center gap-2 hover:border-ink hover:text-accent transition-colors w-fit"
           >
             github.com/oguguca <span>→</span>
           </a>
@@ -53,7 +53,7 @@ export default function Contact() {
             href="https://www.linkedin.com/feed/"
             target="_blank"
             rel="noopener"
-            className="font-mono text-[14.5px] pb-1.5 border-b border-line flex items-center gap-2 hover:border-ink hover:text-accent transition-colors"
+            className="font-mono text-[14.5px] pb-1.5 border-b border-line flex items-center gap-2 hover:border-ink hover:text-accent transition-colors w-fit"
           >
             linkedin.com/in/-- edite -- <span>→</span>
           </a>

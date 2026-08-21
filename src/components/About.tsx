@@ -20,7 +20,20 @@ export default function About() {
         <span className="font-mono text-[13px] text-muted">01 / sobre</span>
       </Reveal>
 
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-[auto_1fr_auto] gap-12">
+        <Reveal className="flex md:block justify-center">
+          {/* PLACEHOLDER: troque esta div por
+              <img src="/sua-foto.jpg" alt="Gustavo Parpinelli" className="w-[180px] h-[180px] rounded-full object-cover" />
+          */}
+          <div
+            data-cursor-hover
+            className="w-[180px] h-[180px] rounded-full border border-dashed border-line flex flex-col items-center justify-center text-center text-muted gap-1.5 shrink-0"
+          >
+            <span className="font-mono text-2xl leading-none">+</span>
+            <span className="font-mono text-[11px] px-4">sua foto aqui</span>
+          </div>
+        </Reveal>
+
         <Reveal>
           {/* EDITE ESTE TEXTO com sua história real */}
           <p className="text-[16.5px] text-[#2A2A2A] max-w-[46ch] mb-4">
@@ -40,14 +53,14 @@ export default function About() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="flex flex-col">
+        <Reveal delay={0.1} className="flex flex-col md:w-[240px]">
           {stats.map((s) => (
             <div
               key={s.label}
-              className="flex justify-between items-baseline py-[18px] border-b border-line last:border-b-0 first:pt-0 transition-[padding-left,border-color] hover:pl-2 hover:border-ink"
+              className="flex justify-between items-baseline py-[18px] border-b border-line last:border-b-0 first:pt-0 transition-[padding-left,border-color] hover:pl-2 hover:border-ink gap-4"
             >
               <span className="text-sm text-muted">{s.label}</span>
-              <span className="font-mono text-sm font-medium">{s.value}</span>
+              <span className="font-mono text-sm font-medium text-right">{s.value}</span>
             </div>
           ))}
         </Reveal>

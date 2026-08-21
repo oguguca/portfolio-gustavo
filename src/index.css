@@ -10,7 +10,6 @@
   body {
     @apply bg-bg text-ink antialiased;
     font-family: 'Inter', -apple-system, sans-serif;
-    cursor: none;
   }
 
   ::selection {
@@ -18,8 +17,3 @@
   }
 }
 
-@media (pointer: coarse) {
-  body {
-    cursor: auto;
-  }
-}

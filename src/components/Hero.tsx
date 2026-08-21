@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
-import HeroCanvas from './HeroCanvas'
+import Iridescence from './Iridescence'
+import SplitText from './SplitText'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 const TYPED_LINES = [
@@ -74,7 +75,13 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden max-w-wrap mx-auto px-8 pt-[88px] pb-16">
-      <HeroCanvas />
+      <Iridescence
+        color={[0.08, 0.09, 0.08]}
+        speed={0.6}
+        amplitude={0.12}
+        mouseReact
+        className="mix-blend-luminosity opacity-70"
+      />
 
       <div className="relative z-10">
         <motion.div
@@ -118,15 +125,20 @@ export default function Hero() {
           ))}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.32 }}
-          className="text-lg text-[#2A2A2A] max-w-[44ch] mb-8"
-        >
-          Transformo problemas complexos em software confiável — do design da
-          API à experiência final de quem usa.
-        </motion.p>
+        <div className="mb-8">
+          <SplitText
+            tag="p"
+            text="Transformo problemas complexos em software confiável — do design da API à experiência final de quem usa."
+            splitType="words"
+            delay={35}
+            duration={0.6}
+            ease="power3.out"
+            from={{ opacity: 0, y: 24 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            className="text-lg text-[#2A2A2A] max-w-[44ch]"
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
