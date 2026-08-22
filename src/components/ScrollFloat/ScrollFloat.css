@@ -1,0 +1,57 @@
+.scroll-float {
+  width: 100%;
+  overflow: hidden;
+
+  margin: 0;
+
+  /*
+    Espaço necessário para letras como:
+    g, j, p, q, y
+    não serem cortadas.
+  */
+  padding-top: 0.18em;
+  padding-bottom: 0.22em;
+}
+
+.scroll-float-text {
+  display: inline-block;
+
+  font-size: clamp(1.6rem, 8vw, 10rem);
+  font-weight: 900;
+
+  text-align: center;
+
+  /*
+    Não usar algo como 0.9 aqui.
+    Era isso que ajudava a cortar o "g".
+  */
+  line-height: 1.05;
+
+  white-space: nowrap;
+}
+
+.char {
+  display: inline-block;
+
+  /*
+    Estado inicial antes mesmo do React/GSAP pintar.
+    Remove aquele frame bugado ao carregar.
+  */
+  opacity: 0;
+
+  transform:
+    translateY(120%)
+    scaleY(2.3)
+    scaleX(0.7);
+
+  transform-origin: 50% 0%;
+
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .char {
+    opacity: 1;
+    transform: none;
+  }
+}

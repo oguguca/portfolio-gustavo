@@ -2,7 +2,7 @@ import { useState, type MouseEvent } from 'react'
 
 import Reveal from './Reveal'
 
-const EMAIL = 'seuemail@exemplo.com'
+const EMAIL = 'parpinelli.gu@gmail.com'
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
@@ -21,11 +21,23 @@ export default function Contact() {
 
   return (
     <section
-  id="contato"
-  className="relative py-12 max-w-wrap mx-auto px-8 overflow-hidden"
->
+      id="contato"
+      className="
+        relative
+        min-h-[100svh]
+        flex
+        flex-col
+        justify-center
+        py-16
+        max-w-wrap
+        mx-auto
+        px-8
+        overflow-hidden
+        scroll-mt-16
+      "
+    >
       {/* Glow decorativo */}
-      <div className="pointer-events-none absolute -right-20 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-accent/10 blur-[100px]" />
+      
 
       <Reveal className="relative z-10 flex items-baseline justify-between flex-wrap gap-4 mb-11">
         <h2 className="text-[26px] md:text-[34px] font-extrabold tracking-tight text-ink">
@@ -148,7 +160,7 @@ export default function Contact() {
                 hover:text-accent
               "
             >
-              <span>linkedin.com/in/-- edite --</span>
+              <span>linkedin.com/in/gustavo-parpinelli/</span>
 
               <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                 ↗

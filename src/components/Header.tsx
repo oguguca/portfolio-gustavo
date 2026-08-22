@@ -1,58 +1,70 @@
 import { useEffect, useState } from 'react'
 
-const links = [
-  { href: '#sobre', label: 'Sobre' },
-  { href: '#habilidades', label: 'Habilidades' },
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#contato', label: 'Contato' },
+const navItems = [
+  { label: 'Início', href: '#inicio' },
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Habilidades', href: '#habilidades' },
+  { label: 'Projetos', href: '#projetos' },
+  { label: 'Contato', href: '#contato' },
 ]
 
 export default function Header() {
-  const [active, setActive] = useState('')
+  const [active, setActive] = useState('#inicio')
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]')
-    if (!sections.length) return
+    const sections = navItems
+      .map(item => document.querySelector(item.href))
+      .filter(Boolean) as Element[]
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id)
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`)
+          }
         })
       },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+      {
+        threshold: 0.45,
+      }
     )
 
-    sections.forEach((s) => observer.observe(s))
+    sections.forEach(section => observer.observe(section))
+
     return () => observer.disconnect()
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-bg/85 backdrop-blur-sm border-b border-line">
-      <nav className="max-w-wrap mx-auto px-8 py-[18px] flex items-center justify-between">
-        <div className="font-mono font-bold text-[15px] tracking-tight transition-[letter-spacing] hover:tracking-wide">
-          GP<span className="text-accent">.</span>dev
-        </div>
+    <header className="fixed top-0 left-0 w-full z-50 border-b border-line/80 bg-bg/20 backdrop-blur-md">
+      <div className="max-w-wrap mx-auto px-8 h-[56px] flex items-center justify-center">
+        <nav className="flex items-center gap-8 md:gap-10">
+          {navItems.map(item => {
+            const isActive = active === item.href
 
-        <div className="flex gap-4 md:gap-7 text-[12.5px] md:text-sm text-muted">
-          {links.map((l) => {
-            const isActive = active === l.href.slice(1)
             return (
               <a
-                key={l.href}
-                href={l.href}
-                className={`relative pb-[3px] transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-px after:h-px after:bg-ink after:transition-[width] after:duration-300 ${
+                key={item.href}
+                href={item.href}
+                className={`relative text-[14px] transition-colors duration-300 ${
                   isActive
-                    ? 'text-ink after:w-full'
-                    : 'hover:text-ink after:w-0 hover:after:w-full'
+                    ? 'text-ink'
+                    : 'text-muted hover:text-ink'
                 }`}
               >
-                {l.label}
+                {item.label}
+
+                <span
+                  className={`absolute left-0 -bottom-[10px] h-px bg-ink transition-all duration-300 ${
+                    isActive
+                      ? 'w-full opacity-100'
+                      : 'w-0 opacity-0'
+                  }`}
+                />
               </a>
             )
           })}
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   )
 }
