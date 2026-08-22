@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
-import Iridescence from './Iridescence'
 import SplitText from './SplitText'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
@@ -74,15 +73,8 @@ export default function Hero() {
   const words = ['Engenheiro', 'de', 'Software.']
 
   return (
-    <section className="relative overflow-hidden max-w-wrap mx-auto px-8 pt-[88px] pb-16">
-      <Iridescence
-        color={[0.08, 0.09, 0.08]}
-        speed={0.6}
-        amplitude={0.12}
-        mouseReact
-        className="mix-blend-luminosity opacity-70"
-      />
-
+    <section className="relative overflow-hidden max-w-wrap mx-auto px-8 min-h-[100svh] flex flex-col justify-center">
+      
       <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -136,7 +128,7 @@ export default function Hero() {
             from={{ opacity: 0, y: 24 }}
             to={{ opacity: 1, y: 0 }}
             threshold={0.1}
-            className="text-lg text-[#2A2A2A] max-w-[44ch]"
+            className="text-lg text-muted max-w-[44ch]"
           />
         </div>
 
