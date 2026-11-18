@@ -5,20 +5,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   align-items: stretch;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
-  background: rgba(23, 16, 32, 0.8);
+  /* a borda fica a cargo do GlowCard (3px); raio interno = 24px - 3px */
+  border-radius: 21px;
+  background: rgba(23, 16, 32, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   overflow: hidden;
-  transition:
-    border-color 0.4s,
-    box-shadow 0.5s;
-}
-
-.pj-row:hover {
-  border-color: color-mix(in srgb, var(--pj-accent) 40%, transparent);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
 }
 
 /* Imagem */

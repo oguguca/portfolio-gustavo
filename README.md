@@ -38,7 +38,7 @@ portfolio-react/
 │       ├── Marquee.tsx
 │       ├── About.tsx            # bio + espaço para foto
 │       ├── Skills.tsx
-│       ├── Projects/            # lista de projetos (imagem + descrição, links)
+│       ├── Projects/            # lista de projetos (imagem + descrição, links) com borda em brilho
 │       ├── Contact.tsx          # links diretos (e-mail, GitHub, LinkedIn)
 │       ├── Footer.tsx
 │       ├── ScrollProgress.tsx

@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import Reveal from '../Reveal'
+import { GlowCard } from '../ui/spotlight-card'
 import './Projects.css'
 
 type Project = {
@@ -64,64 +65,71 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
   return (
     <Reveal delay={Math.min(index, 2) * 0.08}>
-      <article className="pj-row" style={style}>
-        <a
-          href={main}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pj-media"
-          aria-label={`Abrir ${project.title}`}
-          tabIndex={-1}
-        >
-          {project.cover ? (
-            <img
-              src={project.cover}
-              alt={project.coverAlt ?? `Projeto ${project.title}`}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span className="pj-media-empty">{project.title}</span>
-          )}
-        </a>
-
-        <div className="pj-body">
-          <div className="flex items-center gap-3 text-[0.8rem] text-muted">
-            <span>{project.year}</span>
-            {project.live && (
-              <span className="pj-live">
-                <span className="pj-live-dot" />
-                No ar
-              </span>
+      <GlowCard
+        customSize
+        glowColor="brand"
+        radius={24}
+        className="!block !p-0 !gap-0"
+      >
+        <article className="pj-row" style={style}>
+          <a
+            href={main}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pj-media"
+            aria-label={`Abrir ${project.title}`}
+            tabIndex={-1}
+          >
+            {project.cover ? (
+              <img
+                src={project.cover}
+                alt={project.coverAlt ?? `Projeto ${project.title}`}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span className="pj-media-empty">{project.title}</span>
             )}
-            <span className="ml-auto text-right">{project.role}</span>
+          </a>
+
+          <div className="pj-body">
+            <div className="flex items-center gap-3 text-[0.8rem] text-muted">
+              <span>{project.year}</span>
+              {project.live && (
+                <span className="pj-live">
+                  <span className="pj-live-dot" />
+                  No ar
+                </span>
+              )}
+              <span className="ml-auto text-right">{project.role}</span>
+            </div>
+
+            <h3 className="pj-title">{project.title}</h3>
+            <p className="pj-desc">{project.description}</p>
+
+            <ul className="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <li key={tag} className="pj-tag">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+
+            <div className="pj-links">
+              {project.links.site && (
+                <a href={project.links.site} target="_blank" rel="noopener noreferrer" className="pj-link pj-link-main">
+                  Ver site <span aria-hidden="true" className="pj-arrow">↗</span>
+                </a>
+              )}
+              {project.links.code && (
+                <a href={project.links.code} target="_blank" rel="noopener noreferrer" className="pj-link">
+                  Código <span aria-hidden="true" className="pj-arrow">↗</span>
+                </a>
+              )}
+            </div>
           </div>
-
-          <h3 className="pj-title">{project.title}</h3>
-          <p className="pj-desc">{project.description}</p>
-
-          <ul className="flex flex-wrap gap-2">
-            {project.tags.map(tag => (
-              <li key={tag} className="pj-tag">
-                {tag}
-              </li>
-            ))}
-          </ul>
-
-          <div className="pj-links">
-            {project.links.site && (
-              <a href={project.links.site} target="_blank" rel="noopener noreferrer" className="pj-link pj-link-main">
-                Ver site <span aria-hidden="true" className="pj-arrow">↗</span>
-              </a>
-            )}
-            {project.links.code && (
-              <a href={project.links.code} target="_blank" rel="noopener noreferrer" className="pj-link">
-                Código <span aria-hidden="true" className="pj-arrow">↗</span>
-              </a>
-            )}
-          </div>
-        </div>
-      </article>
+        </article>
+      </GlowCard>
     </Reveal>
   )
 }
