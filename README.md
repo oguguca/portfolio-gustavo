@@ -31,7 +31,7 @@ portfolio-react/
 │   ├── hooks/
 │   │   └── useReducedMotion.ts
 │   └── components/
-│       ├── Header.tsx
+│       ├── Header.tsx           # menu circular (fluid menu) no canto superior direito
 │       ├── Hero.tsx
 │       ├── Iridescence.tsx      # fundo animado em WebGL
 │       ├── SplitText.tsx        # reveal de texto por palavra/caractere
@@ -42,7 +42,8 @@ portfolio-react/
 │       ├── Contact.tsx          # links diretos (e-mail, GitHub, LinkedIn)
 │       ├── Footer.tsx
 │       ├── ScrollProgress.tsx
-│       └── Reveal.tsx
+│       ├── Reveal.tsx
+│       └── ui/                  # componentes base (fluid-menu, spotlight-card)
 └── README.md
 ```
 

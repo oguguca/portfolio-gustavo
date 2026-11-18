@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
+import { Code2, FolderGit2, Home, Mail, Menu as MenuIcon, User, X } from 'lucide-react'
+
+import { MenuContainer, MenuItem } from './ui/fluid-menu'
 
 const navItems = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Habilidades', href: '#habilidades' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Início', href: '#inicio', icon: Home },
+  { label: 'Sobre', href: '#sobre', icon: User },
+  { label: 'Habilidades', href: '#habilidades', icon: Code2 },
+  { label: 'Projetos', href: '#projetos', icon: FolderGit2 },
+  { label: 'Contato', href: '#contato', icon: Mail },
 ]
 
 export default function Header() {
@@ -34,37 +37,37 @@ export default function Header() {
     return () => observer.disconnect()
   }, [])
 
+  const goTo = (href: string) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+    history.replaceState(null, '', href)
+  }
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-b border-line/80 bg-bg/20 backdrop-blur-md">
-      <div className="max-w-wrap mx-auto px-8 h-[56px] flex items-center justify-center">
-        <nav className="flex items-center gap-8 md:gap-10">
-          {navItems.map(item => {
-            const isActive = active === item.href
-
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`relative text-[14px] transition-colors duration-300 ${
-                  isActive
-                    ? 'text-ink'
-                    : 'text-muted hover:text-ink'
-                }`}
-              >
-                {item.label}
-
-                <span
-                  className={`absolute left-0 -bottom-[10px] h-px bg-ink transition-all duration-300 ${
-                    isActive
-                      ? 'w-full opacity-100'
-                      : 'w-0 opacity-0'
-                  }`}
-                />
-              </a>
-            )
-          })}
-        </nav>
-      </div>
-    </header>
+    <nav aria-label="Navegação principal" className="fixed top-5 right-5 md:top-6 md:right-8 z-50">
+      <MenuContainer>
+        <MenuItem
+          label="Abrir menu"
+          icon={
+            <div className="relative w-6 h-6">
+              <div className="absolute inset-0 transition-all duration-300 ease-in-out origin-center opacity-100 scale-100 rotate-0 [div[data-expanded=true]_&]:opacity-0 [div[data-expanded=true]_&]:scale-0 [div[data-expanded=true]_&]:rotate-180">
+                <MenuIcon size={24} strokeWidth={1.5} />
+              </div>
+              <div className="absolute inset-0 transition-all duration-300 ease-in-out origin-center opacity-0 scale-0 -rotate-180 [div[data-expanded=true]_&]:opacity-100 [div[data-expanded=true]_&]:scale-100 [div[data-expanded=true]_&]:rotate-0">
+                <X size={24} strokeWidth={1.5} />
+              </div>
+            </div>
+          }
+        />
+        {navItems.map(({ label, href, icon: Icon }) => (
+          <MenuItem
+            key={href}
+            label={label}
+            isActive={active === href}
+            onClick={() => goTo(href)}
+            icon={<Icon size={24} strokeWidth={1.5} />}
+          />
+        ))}
+      </MenuContainer>
+    </nav>
   )
 }
