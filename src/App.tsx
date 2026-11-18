@@ -9,7 +9,6 @@ import Projects from './components/Projects/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
-import CustomCursor from './components/CustomCursor'
 import MoltenMetal from './components/MoltenMetal/MoltenMetal'
 
 export default function App() {
@@ -38,7 +37,6 @@ export default function App() {
       </div>
 
       <ScrollProgress />
-      <CustomCursor />
       <Header />
 
       <main>

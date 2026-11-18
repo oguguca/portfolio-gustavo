@@ -41,7 +41,6 @@ portfolio-react/
 │       ├── Projects/            # lista de projetos (imagem + descrição, links)
 │       ├── Contact.tsx          # links diretos (e-mail, GitHub, LinkedIn)
 │       ├── Footer.tsx
-│       ├── CustomCursor.tsx     # cursor decorativo (o cursor do sistema continua visível)
 │       ├── ScrollProgress.tsx
 │       └── Reveal.tsx
 └── README.md
@@ -85,9 +84,8 @@ vercel
 
 ## Detalhes técnicos
 
-- Toda animação respeita `prefers-reduced-motion`, via `MotionConfig reducedMotion="user"` do Framer Motion e checagens manuais no WebGL e no cursor customizado.
-- O cursor customizado é um anel decorativo que segue o mouse com atraso — o ponteiro nativo do sistema continua sempre visível.
-- `Iridescence` e `CustomCursor` são desativados automaticamente em dispositivos touch (`pointer: coarse`) e quando `prefers-reduced-motion` está ativo.
+- Toda animação respeita `prefers-reduced-motion`, via `MotionConfig reducedMotion="user"` do Framer Motion e checagens manuais no WebGL.
+- `Iridescence` é desativado automaticamente em dispositivos touch (`pointer: coarse`) e quando `prefers-reduced-motion` está ativo.
 - `SplitText` e `Iridescence` seguem a API pública documentada em reactbits.dev (mesmos nomes de prop) e usam as mesmas bibliotecas por baixo dos panos — GSAP `SplitText`/`ScrollTrigger` e `OGL` — em vez de uma versão só "inspirada".
 
 ---
