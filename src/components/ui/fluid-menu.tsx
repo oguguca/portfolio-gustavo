@@ -79,8 +79,8 @@ export function MenuItem({
     <button
       type="button"
       className={`relative block w-full h-16 text-center group transition-colors duration-200 focus-visible:outline-none focus-visible:bg-white/10
-        ${disabled ? "text-muted/50 cursor-not-allowed" : isActive ? "text-accent" : "text-ink/80 hover:text-ink"}
-        ${isActive ? "bg-white/10" : ""}
+        ${disabled ? "text-muted/50 cursor-not-allowed" : isActive ? "text-white" : "text-ink/80 hover:text-ink"}
+        ${isActive ? "bg-accent/35" : ""}
       `}
       onClick={onClick}
       disabled={disabled}
@@ -120,6 +120,8 @@ export function MenuContainer({ children }: { children: React.ReactNode }) {
 
   const labelOf = (child: React.ReactNode) =>
     React.isValidElement<MenuItemProps>(child) ? child.props.label : undefined
+  const isActiveItem = (child: React.ReactNode) =>
+    React.isValidElement<MenuItemProps>(child) ? Boolean(child.props.isActive) : false
 
   return (
     <div className="relative w-[64px]" data-expanded={isExpanded}>
@@ -138,6 +140,7 @@ export function MenuContainer({ children }: { children: React.ReactNode }) {
         {/* Other items */}
         {childrenArray.slice(1).map((child, index) => {
           const label = labelOf(child)
+          const active = isActiveItem(child)
 
           return (
             <div
@@ -173,7 +176,11 @@ export function MenuContainer({ children }: { children: React.ReactNode }) {
               {label && (
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-full bg-bgAlt/90 px-3 py-1.5 text-xs text-ink ring-1 ring-white/10 backdrop-blur-md opacity-0 translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-focus-within/item:opacity-100 group-focus-within/item:translate-x-0"
+                  className={`pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-xs backdrop-blur-md transition-all duration-200 ${
+                    active
+                      ? "bg-accent/25 text-white ring-1 ring-accent/50 opacity-100 translate-x-0"
+                      : "bg-bgAlt/90 text-ink ring-1 ring-white/10 opacity-0 translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 group-focus-within/item:opacity-100 group-focus-within/item:translate-x-0"
+                  }`}
                 >
                   {label}
                 </span>
