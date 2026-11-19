@@ -7,6 +7,13 @@
     scroll-behavior: smooth;
   }
 
+  /* brilhos decorativos de várias seções passam da borda da tela;
+     clip corta sem criar área de rolagem e sem quebrar position: sticky */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-bg text-ink antialiased;
     font-family: 'Inter', -apple-system, sans-serif;
